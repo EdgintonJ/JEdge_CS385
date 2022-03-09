@@ -7,11 +7,12 @@
 
     <script id="Cube-vertex-shader" type="x-shader/x-vertex">#version 300 es
         in vec4 aPosition;
+        uniform mat4 MV;
         
         void main()
         {
             gl_PointSize = 3.0;
-            gl_Position = aPosition;
+            gl_Position = MV * aPosition;
         }
     </script>
 
@@ -23,6 +24,7 @@
         void main()
         {
             fColor = vec4(1.0, 0.5, 0.2, 1.0);
+
         }
     </script>
 </head>
