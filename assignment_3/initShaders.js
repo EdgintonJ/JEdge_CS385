@@ -5,6 +5,7 @@
 //  A helper function for compiling WebGL shaders.
 //
 
+
 function initShaders( gl, vertexShaderId, fragmentShaderId )
 {
     // Begin by determining which version the OpenGL Shading Language (GLSL)
@@ -120,6 +121,11 @@ function initShaders( gl, vertexShaderId, fragmentShaderId )
         alert( msg );
         return -1;
     }
+
+    let uniforms = {
+        MV : gl.getUniformLocation(program, "MV"),
+        P : gl.getUniformLocation(program, "P")
+    };
 
     return program;
 }
