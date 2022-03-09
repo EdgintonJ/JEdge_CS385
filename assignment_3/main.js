@@ -2,6 +2,8 @@
 // CS-385-02 Sp '22
 // Assignment 3
 
+let angle = 0;
+
 function init(){
     const canvas = document.getElementById("webgl-canvas");
     const gl = canvas.getContext("webgl2");
@@ -19,8 +21,6 @@ function init(){
     let cube = new Cube(gl);
     gl.clearDepth(1.0); // default
     gl.enable(gl.DEPTH_TEST);
-    // gl.enable(gl.CULL_FACE);
-    // gl.cullFace(gl.BACK_FACE);
     render(gl, cube);
 
 
@@ -30,15 +30,13 @@ function init(){
 
 function render(gl, obj){
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-    obj.render();
-    obj.gl_position = vec4(obj.position, 1.0)
 
-    obj.P = perspective();
-    obj.MV = mult(.01, .01);
-    // obj.vec4()
-
-
+    angle += 5;
+    obj.MV = rotate(angle, [1, 1, 1]);  // rotate around the axis (1, 1, 1)
+    // obj.MV = scalem(0.95, 1.05, 1)
+    obj.render()
     requestAnimationFrame(render)
+
 }
 
 window.onload = init;
