@@ -77,8 +77,9 @@ function Cube(gl) {
     positions.aPosition = gl.getAttribLocation( program, "aPosition" );
     gl.enableVertexAttribArray( positions.aPosition );
 
-    MV = gl.getUniformLocation(program, "MV");
-    this.MV = mat4();  // mat4() is in MV.js
+    let MV = gl.getUniformLocation(program, "MV");
+    if (MV) { this.MV = mat4(); }
+    
 
     this.render = function () {
         gl.useProgram( program );
